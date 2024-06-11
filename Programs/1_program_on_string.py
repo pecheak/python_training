@@ -88,3 +88,50 @@ print("ip:", ip)
 # >>>
 
 print("###########################")
+
+
+
+
+
+print("Extract PICS: 1-WAY")
+print("--------------")
+
+input_data = '123.123.123.123 - - [26/Apr/2000:00:23:48 -0400] "GET /pics/wpaper.gif HTTP/1.0" 200 6248 "http://www.jafsoft.com/asctortf/" "Mozilla/4.05 (Macintosh; I; PPC)"'
+
+start_index = input_data.index("/pics/") # It will return index 1st "/"
+start_index = start_index + 6
+
+# 1-way
+# end_index = input_data.index("HTTP") # It will return index of H
+# end_index = end_index - 1 # Index of space after gif
+
+# 2-way
+end_index = input_data.index(" ", start_index)
+
+img = input_data[start_index:end_index]
+print(img)
+
+print("###########################")
+
+print("Extract PICS: 2-WAY")
+print("--------------")
+
+input_data = '123.123.123.123 - - [26/Apr/2000:00:23:48 -0400] "GET /pics/wpaper.gif HTTP/1.0" 200 6248 "http://www.jafsoft.com/asctortf/" "Mozilla/4.05 (Macintosh; I; PPC)"'
+
+sp= input_data.split()
+print("Splitted Values: ", sp, end="\n\n")
+
+raw_img = sp[6] # '/pics/wpaper.gif'
+
+# 1-way: Remove '/pics/' from '/pics/wpaper.gif'
+img_1 = raw_img[6:]
+
+# 2-way: Remove '/pics/' from '/pics/wpaper.gif'
+raw_img_sp = raw_img.split("/") #
+# print(raw_img_sp) # ['', 'pics', 'wpaper.gif']
+img_2 = raw_img_sp[2] # Using +ve index no
+img_3 = raw_img_sp[-1] # Using -ve index no
+
+print(img_1, img_2, img_3, sep="\n")
+
+print("###########################")
